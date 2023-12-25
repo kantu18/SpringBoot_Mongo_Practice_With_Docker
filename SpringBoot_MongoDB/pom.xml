@@ -68,7 +68,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>mongoDb_Service</finalName>
+		<finalName>mongoDb_service</finalName>
 	</build>
 
 </project>

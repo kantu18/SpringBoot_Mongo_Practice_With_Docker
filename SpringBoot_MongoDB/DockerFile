@@ -1,4 +1,4 @@
 FROM openjdk
-ADD target/mongoDb_Service.jar mongoDb_Service.jar
+ADD target/mongoDb_service.jar mongoDb_service.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/mongoDb_Service.jar"]
+ENTRYPOINT ["java", "-jar", "/mongoDb_service.jar"]
