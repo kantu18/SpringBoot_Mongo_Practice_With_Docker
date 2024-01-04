@@ -1,0 +1,34 @@
+pipeline{
+        agent any
+        tools{
+            maven 'Maven'
+        }
+        stages{
+            stage('Build Project'){
+                steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Snehasish', url: 'https://github.com/kantu18/SpringBoot_Mongo_Practice_With_Docker']])
+                 dir('C:\\Users\\sneha\\.jenkins\\workspace\\Spring_Boot_Mongo_practice\\SpringBoot_MongoDB') {
+                    bat 'mvn clean install'
+                }
+            }
+            }
+            stage('Create Docker Image'){
+                steps{
+                    dir('C:\\Users\\sneha\\.jenkins\\workspace\\Spring_Boot_Mongo_practice\\SpringBoot_MongoDB') {
+                    bat 'docker build -t mongodb_service .'
+                } 
+                }
+            }
+            stage('Push Image to docker Hub'){
+                steps{
+                    withCredentials([string(credentialsId: 'snehasis18', variable: 'snehasis')]) {
+                        writeFile file: 'temp.txt', text: "${snehasis}"
+                        bat 'docker login -u snehasis18 --password-stdin < temp.txt'
+                        bat 'docker tag mongodb_service:latest snehasis18/mongodb_service'
+                        bat 'docker push snehasis18/mongodb_service'
+                        bat 'del temp.txt'
+                }
+                }
+            }
+        }
+}
