@@ -26,13 +26,13 @@ public class Employee_controller {
 	@GetMapping("/getall")
 	public ResponseEntity<List<Employee_details>> getAllEmployess()
 	{
-		return new ResponseEntity<List<Employee_details>>(service.getAllEmployees(),HttpStatus.OK);
+		return new ResponseEntity<>(service.getAllEmployees(),HttpStatus.OK);
 	}
 	
 	@PostMapping("/save")
 	public ResponseEntity<Employee_details> saveRecords(@RequestBody Employee_details details)
 	{
-		return new ResponseEntity<Employee_details>(service.saveemployees(details),HttpStatus.CREATED);
+		return new ResponseEntity<>(service.saveemployees(details),HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/findbyId/{emp_id}")
