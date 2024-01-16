@@ -38,19 +38,19 @@ public class Employee_controller {
 	@GetMapping("/findbyId/{emp_id}")
 	public ResponseEntity<Optional<Employee_details>> findEmployees(@PathVariable String emp_id)
 	{
-		return new ResponseEntity<Optional<Employee_details>>(service.findById(emp_id),HttpStatus.OK);
+		return new ResponseEntity<>(service.findById(emp_id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/findbyAge")
 	public ResponseEntity<List<Employee_details>> findEmployeesbyAge()
 	{
-		return new ResponseEntity<List<Employee_details>>(service.getEmpbyAge(),HttpStatus.OK);
+		return new ResponseEntity<>(service.getEmpbyAge(),HttpStatus.OK);
 	}
 	
 	@GetMapping("/findbyDepartments")
 	public ResponseEntity<List<Employee_details>> findEmployeesbyDepartments()
 	{
-		return new ResponseEntity<List<Employee_details>>(service.getEmpbydepartments(),HttpStatus.OK);
+		return new ResponseEntity<>(service.getEmpbydepartments(),HttpStatus.OK);
 	}
 
 	
